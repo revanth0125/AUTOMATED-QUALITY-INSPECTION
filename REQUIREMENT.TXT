@@ -1,0 +1,19 @@
+requirements.txt
+
+This file lists all the Python libraries required to run the project. Anyone who clones your GitHub repository can install them using:
+
+pip install -r requirements.txt
+Contents of requirements.txt
+opencv-python==4.12.0.88
+numpy==2.2.6
+Explanation
+Library	Purpose
+opencv-python	Image processing, contour detection, thresholding, drawing bounding boxes
+numpy	Array and matrix operations used by OpenCV
+Installation
+
+After cloning the repository, users simply run:
+
+pip install -r requirements.txt
+
+This installs all the dependencies needed for the project.
