@@ -1,0 +1,66 @@
+images/
+
+This folder is not for the dataset. It contains images used in your GitHub README to demonstrate the project, such as screenshots, workflow diagrams, and sample results.
+
+images/
+├── sample_input.png
+├── sample_output.png
+└── workflow.png
+
+1. sample_input.png
+
+This should be the original image before processing.
+
+Example:
+
+A conveyor belt with an object.
+A bolt or mechanical part before inspection.
+The raw camera frame.
+
+2. sample_output.png
+
+This should be the processed output after your program runs.
+
+It should show:
+
+Bounding box around the detected defect.
+PASS or FAIL label.
+Contours detected.
+
+3. workflow.png
+
+This is a simple block diagram showing how the project works.
+
+Example workflow:
+
+Camera
+   │
+   ▼
+Capture Image
+   │
+   ▼
+Convert to Grayscale
+   │
+   ▼
+Gaussian Blur
+   │
+   ▼
+Thresholding
+   │
+   ▼
+Contour Detection
+   │
+   ▼
+Bounding Box
+   │
+   ▼
+PASS / FAIL
+
+You can create this diagram using:
+
+Microsoft PowerPoint
+Canva
+draw.io
+Microsoft Word (Shapes)
+Figma
+
