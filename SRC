@@ -1,0 +1,145 @@
+SRC
+
+This folder contains all the Python programs that implement the Automated Quality Inspection system.
+
+src/
+├── main.py
+├── preprocessing.py
+├── defect_detection.py
+└── utils.py
+
+1.main.py
+Purpose
+
+This is the main program that:
+
+Loads the input image
+Calls the preprocessing functions
+Detects defects
+Displays the final PASS/FAIL result
+
+import cv2
+from preprocessing import preprocess_image
+from defect_detection import detect_defects
+
+# Load input image
+image = cv2.imread("../dataset/test/test1.jpg")
+
+# Preprocess image
+processed = preprocess_image(image)
+
+# Detect defects
+result = detect_defects(image, processed)
+
+# Display result
+cv2.imshow("Quality Inspection", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+2 preprocessing.py
+Purpose
+
+This file performs the image preprocessing steps mentioned in your project manual:
+
+Convert to Grayscale
+Apply Gaussian Blur
+Apply Binary Thresholding
+import cv2
+
+def preprocess_image(image):
+
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    blur = cv2.GaussianBlur(gray, (5,5), 0)
+
+    _, threshold = cv2.threshold(
+        blur,
+        120,
+        255,
+        cv2.THRESH_BINARY_INV
+    )
+
+    return threshold
+
+3 defect_detection.py
+Purpose
+
+This module:
+
+Finds contours
+Draws bounding boxes
+Classifies the part as PASS or FAIL
+
+import cv2
+
+def detect_defects(original, processed):
+
+    contours, _ = cv2.findContours(
+        processed,
+        cv2.RETR_EXTERNAL,
+        cv2.CHAIN_APPROX_SIMPLE
+    )
+
+    defective = False
+
+    for contour in contours:
+
+        if cv2.contourArea(contour) > 100:
+
+            x, y, w, h = cv2.boundingRect(contour)
+
+            cv2.rectangle(
+                original,
+                (x, y),
+                (x+w, y+h),
+                (0,0,255),
+                2
+            )
+
+            defective = True
+
+    if defective:
+
+        cv2.putText(
+            original,
+            "STATUS : FAIL",
+            (20,40),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (0,0,255),
+            2
+        )
+
+    else:
+
+        cv2.putText(
+            original,
+            "STATUS : PASS",
+            (20,40),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (0,255,0),
+            2
+        )
+
+    return original
+
+4 utils.py
+Purpose
+
+Helper functions for displaying and saving images.
+
+import cv2
+
+def show_image(title, image):
+
+    cv2.imshow(title, image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+def save_image(path, image):
+
+    cv2.imwrite(path, image)
+
+  
