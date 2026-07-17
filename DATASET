@@ -1,0 +1,71 @@
+DATASET
+the folder contains the images
+used for training and testing the quality inspection algorithm.
+
+dataset/
+│
+├── good/
+├── defective/
+└── test/
+
+1.good/
+
+Contains images of products without defects.
+good/
+good/
+│
+├── good1.jpg
+├── good2.jpg
+├── good3.jpg
+├── good4.jpg
+└── good5.jpg
+These images should contain:
+
+Correctly assembled parts
+No cracks
+No missing screws
+No scratches
+Proper alignment
+
+2.defective/
+
+Contains images of faulty products.
+
+Example:
+
+defective/
+│
+├── crack1.jpg
+├── crack2.jpg
+├── missing_screw1.jpg
+├── scratch1.jpg
+└── damaged_edge.jpg
+
+Possible defects include:
+
+Missing screw
+Surface crack
+Broken edge
+Scratches
+Wrong alignment
+
+3.test/
+
+Contains unknown images that the algorithm will inspect.
+
+Example:
+
+test/
+│
+├── test1.jpg
+├── test2.jpg
+├── test3.jpg
+└── test4.jpg
+
+The program will:
+
+Read these images.
+Preprocess them.
+Detect contours.
+Draw bounding boxes around defects.
+Display PASS or FAIL.
